@@ -82,6 +82,10 @@ ol {
   margin-top: 0;
 }
 
+strong {
+  font-weight: 600;
+}
+
 h1,
 h2,
 .display,
@@ -587,10 +591,9 @@ section[id] {
 .kicker {
   margin-bottom: var(--space-3);
   color: var(--petroleum);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .pull {
@@ -674,21 +677,24 @@ section[id] {
 .icon-wrap {
   display: grid;
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3rem;
+  height: 3rem;
   margin-bottom: var(--space-4);
-  border-radius: var(--radius);
-  background: var(--sage-soft);
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--brass) 65%, transparent);
   color: var(--petroleum);
+  transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease);
 }
 
-.section-white .icon-wrap {
-  background: var(--white);
+.card:hover .icon-wrap {
+  border-color: var(--brass);
+  background: color-mix(in srgb, var(--brass) 10%, transparent);
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .tags {

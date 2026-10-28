@@ -46,7 +46,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
         <p class="display">
           {phraseBefore}{phraseAt >= 0 && <em>{phraseMark}</em>}{phraseAfter}
         </p>
-        <p class="lead">Orientação jurídica para pacientes e profissionais médicos, com uma atuação clara, próxima e responsável.</p>
+        <p class="lead"><strong>Orientação jurídica</strong> para pacientes e profissionais médicos, com uma atuação clara, próxima e responsável.</p>
         <p class="muted">{site.attendance}</p>
         <div class="actions">
           <Button variant="link" href="#pacientes">Preciso de orientação como paciente</Button>
@@ -70,7 +70,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
       <h2 data-reveal><Mark text="Direito e saúde exigem conhecimento. Mas também clareza." word="clareza" /></h2>
       <div data-reveal>
         <p>
-          Questões de saúde costumam chegar com dúvidas, preocupação e decisões que não podem esperar. Dra. Marjorie Cordeiro atua no encontro entre Direito e Saúde, transformando questões jurídicas complexas em orientação clara e responsável.
+          Questões de saúde costumam chegar com dúvidas, preocupação e decisões que não podem esperar. Dra. Marjorie Cordeiro atua no encontro entre <strong>Direito e Saúde</strong>, transformando questões jurídicas complexas em <strong>orientação clara</strong> e responsável.
         </p>
         <blockquote class="pull">
           <p>{site.signature}</p>
@@ -82,7 +82,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
   <section class="section section-sand paths" aria-label="Caminhos de atuação">
     <div class="wrap duo">
       <article class="duo-card" id="atalho-pacientes" data-reveal>
-        <p class="kicker">Para pacientes e familiares</p>
+        <p class="kicker">Para Pacientes</p>
         <h2><Mark text="Quando a saúde se torna uma questão jurídica, entender o que pode ser feito é o primeiro passo." word="jurídica" /></h2>
         <ul>
           {patientTeasers.map((item) => <li><strong>{item.title}.</strong> {item.text}</li>)}
@@ -91,9 +91,9 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
         <Button href="#pacientes">Conheça a atuação para pacientes</Button>
       </article>
       <article class="duo-card" id="atalho-medicos" data-reveal>
-        <p class="kicker">Para médicos e clínicas</p>
+        <p class="kicker">Para Médicos</p>
         <h2><Mark text="Segurança jurídica também faz parte da prática médica." word="jurídica" /></h2>
-        <p>Orientação jurídica preventiva para que médicos e clínicas exerçam sua atividade com mais informação e segurança, em temas como:</p>
+        <p><strong>Orientação jurídica</strong> preventiva para que médicos e clínicas exerçam sua atividade com mais informação e segurança, em temas como:</p>
         <ul>
           {doctorTags.map((tag) => <li>{tag}</li>)}
         </ul>
@@ -107,13 +107,13 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
       <div class="split">
         <div>
           <p class="eyebrow">01 — Pacientes</p>
-          <p class="kicker">Para pacientes</p>
+          <p class="kicker">Para Pacientes</p>
           <h2 id="titulo-pacientes" data-reveal><Mark text="Direito Médico para pacientes e familiares." word="pacientes" /></h2>
           <p class="lead">Negativas do plano de saúde, home care e medicamentos: seus direitos explicados com clareza.</p>
           <p>
-            Dra. Marjorie Cordeiro atua na orientação jurídica de pacientes e familiares que enfrentam dificuldades relacionadas ao acesso a tratamentos, exames, cirurgias, medicamentos e outros direitos ligados à saúde.
+            Dra. Marjorie Cordeiro atua na <strong>orientação jurídica</strong> de pacientes e familiares que enfrentam dificuldades relacionadas ao <strong>acesso a tratamentos</strong>, exames, cirurgias, medicamentos e outros direitos ligados à saúde.
           </p>
-          <p>A proposta é compreender a situação, analisar os documentos disponíveis e explicar com clareza as possibilidades de cada caso.</p>
+          <p>A proposta é <strong>compreender a situação</strong>, analisar os documentos disponíveis e <strong>explicar com clareza</strong> as possibilidades de cada caso.</p>
           <div class="actions">
             <Button variant="whatsapp" href={waLink(site.messages.patient)}>Falar pelo WhatsApp</Button>
           </div>
@@ -156,14 +156,14 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
       <div class="split split-reverse">
         <div>
           <p class="eyebrow">02 — Médicos</p>
-          <p class="kicker">Para médicos</p>
+          <p class="kicker">Para Médicos</p>
           <h2 id="titulo-medicos" data-reveal><Mark text="Orientação jurídica para médicos e clínicas." word="médicos" /></h2>
-          <p class="lead">Conhecimento jurídico também faz parte de uma prática médica organizada.</p>
+          <p class="lead"><strong>Conhecimento jurídico</strong> também faz parte de uma prática médica organizada.</p>
           <p>
-            A atividade médica envolve não apenas decisões clínicas, mas também documentos, comunicação com pacientes, direitos profissionais e responsabilidades que podem exigir orientação jurídica.
+            A atividade médica envolve não apenas <strong>decisões clínicas</strong>, mas também documentos, comunicação com pacientes, <strong>direitos profissionais</strong> e responsabilidades que podem exigir <strong>orientação jurídica</strong>.
           </p>
           <p>
-            A Dra. Marjorie Cordeiro atua de forma preventiva e orientativa, ajudando médicos e clínicas a compreender questões jurídicas relacionadas à prática profissional e a tomar decisões com mais informação e segurança.
+            A Dra. Marjorie Cordeiro atua de forma <strong>preventiva e orientativa</strong>, ajudando médicos e clínicas a compreender questões jurídicas relacionadas à <strong>prática profissional</strong> e a tomar decisões com mais informação e segurança.
           </p>
           <div class="actions">
             <Button variant="whatsapp" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</Button>
@@ -193,15 +193,17 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
         <div>
           <h2 data-reveal><Mark text="Orientação antes e depois de uma dúvida surgir." word="dúvida" /></h2>
           <p>
-            A orientação jurídica não precisa começar apenas quando existe um conflito. Ela pode revisar documentos e identificar pontos de atenção na rotina e, quando já existe uma situação concreta (como uma dúvida sobre documentação ou uma solicitação formal), começa pela análise dos fatos antes de qualquer medida.
+            A <strong>orientação jurídica</strong> não precisa começar apenas quando existe um conflito. Ela pode revisar documentos e identificar pontos de atenção na rotina e, quando já existe uma situação concreta (como uma dúvida sobre documentação ou uma solicitação formal), começa pela <strong>análise dos fatos</strong> antes de qualquer medida.
           </p>
           <div class="actions">
             <Button variant="whatsapp" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</Button>
           </div>
         </div>
-        <blockquote class="quote-ink" data-reveal>
-          <p>Prevenção jurídica não significa trabalhar com medo. Significa tomar decisões com mais informação.</p>
-        </blockquote>
+        <div class="quote-frame" data-reveal>
+          <blockquote class="quote-ink">
+            <p>Prevenção jurídica não significa trabalhar com medo. Significa tomar decisões com mais informação.</p>
+          </blockquote>
+        </div>
       </div>
     </div>
   </section>
@@ -217,12 +219,12 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
           <p class="eyebrow">03 — Sobre</p>
           <h2 id="titulo-sobre" data-reveal><Mark text="Direito, comunicação e uma forma mais clara de orientar." word="orientar" /></h2>
           <p>
-            Dra. Marjorie Cordeiro é advogada especialista em Direito Médico e da Saúde e jornalista de formação. Formada em direito pela Universidade de Fortaleza, em 2014, com pós-graduação em processo penal e penal, mestranda na Universidade Católica Portuguesa — UCP Porto e especialização em direito médico e da saúde.
+            Dra. Marjorie Cordeiro é advogada especialista em <strong>Direito Médico e da Saúde</strong> e <strong>jornalista de formação</strong>. Formada em direito pela Universidade de Fortaleza, em 2014, com pós-graduação em processo penal e penal, mestranda na Universidade Católica Portuguesa — UCP Porto e especialização em direito médico e da saúde.
           </p>
           <p>
-            Da comunicação vem uma habilidade essencial em uma área marcada por normas, decisões e documentos técnicos: compreender, organizar, contextualizar e traduzir informações complexas.
+            Da comunicação vem uma habilidade essencial em uma área marcada por normas, decisões e documentos técnicos: <strong>compreender, organizar, contextualizar e traduzir</strong> informações complexas.
           </p>
-          <p>Sua atuação parte da honestidade: dizer com transparência o que pode ser feito, o que precisa ser analisado e quais caminhos podem ser considerados.</p>
+          <p>Sua atuação parte da <strong>honestidade</strong>: dizer com transparência o que pode ser feito, o que precisa ser analisado e quais caminhos podem ser considerados.</p>
           <ul class="credentials">
             {credentials.map((item) => <li>{item}</li>)}
           </ul>
