@@ -369,9 +369,12 @@ h3 em {
 .footer,
 .footer-meta p,
 .footer-meta a,
-.signature,
 .legal-bar a {
-  color: var(--offwhite);
+  color: var(--mist);
+}
+
+.signature {
+  color: var(--mist-strong);
 }
 
 .wa-float {

@@ -17,6 +17,8 @@ const { legal = false } = Astro.props;
           {site.name}<br />
           Advogada especialista em {site.area} · {site.oab}
         </p>
+      </div>
+      <div>
         <p>
           <a href={waLink(site.messages.neutral)}>WhatsApp: {site.phoneDisplay}</a><br />
           <a href={`mailto:${site.email}`}>{site.email}</a><br />
@@ -24,7 +26,7 @@ const { legal = false } = Astro.props;
           Presencial: {site.address.line} · Online em todo o Brasil.
         </p>
       </div>
-      <div>
+      <div class="footer-social">
         <p>
           <a href={site.instagram} rel="me noopener noreferrer" target="_blank">Instagram</a><br />
           <a href={site.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn</a>

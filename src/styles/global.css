@@ -6,6 +6,8 @@
   --petroleum-lift: #245862;
   --offwhite: #f5f1ea;
   --sage: #879c91;
+  --mist: #9eb0a8;
+  --mist-strong: #b7c6bf;
   --sage-soft: #e7eeea;
   --sage-wash: #eef3f0;
   --graphite: #282b2d;
@@ -929,7 +931,7 @@ section[id] {
 
 .footer {
   background: var(--graphite);
-  color: var(--offwhite);
+  color: var(--mist);
   padding: var(--space-8) 0 var(--space-8);
   font-size: var(--text-sm);
   line-height: 1.6;
@@ -943,17 +945,22 @@ section[id] {
 
 .footer-meta p {
   margin-bottom: var(--space-3);
-  color: var(--offwhite);
+  color: var(--mist);
 }
 
 .footer-meta a {
-  color: var(--offwhite);
+  color: var(--mist);
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
   text-underline-offset: 0.18em;
+}
+
+.footer-meta a:hover {
+  color: var(--mist-strong);
 }
 
 .signature {
   margin: 0 0 var(--space-3);
-  color: var(--offwhite);
+  color: var(--mist-strong);
   font-size: 1.25rem;
   line-height: 1.35;
 }
@@ -964,12 +971,17 @@ section[id] {
   gap: var(--space-3) var(--space-5);
   margin-top: var(--space-6);
   padding-top: var(--space-4);
-  border-top: 1px solid rgba(245, 241, 234, 0.22);
+  border-top: 1px solid color-mix(in srgb, var(--mist) 35%, transparent);
   font-size: var(--text-sm);
 }
 
 .legal-bar a {
-  color: var(--offwhite);
+  color: var(--mist);
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.legal-bar a:hover {
+  color: var(--mist-strong);
 }
 
 .legal {
@@ -1095,7 +1107,13 @@ section[id] {
   }
 
   .footer-meta {
-    grid-template-columns: 1.2fr 1.3fr 0.6fr;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.35fr) auto;
+    column-gap: var(--space-8);
+  }
+
+  .footer-social {
+    justify-self: end;
+    text-align: right;
   }
 
   .footer {
