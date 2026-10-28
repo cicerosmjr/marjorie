@@ -1,0 +1,41 @@
+---
+import ContactForm from './ContactForm.astro';
+import { site, waLink } from '../data/site';
+
+interface Props {
+  legal?: boolean;
+}
+
+const { legal = false } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="wrap">
+    {!legal && <ContactForm />}
+    <div class="footer-meta">
+      <div>
+        <p class="signature">{site.signature}</p>
+        <p>
+          {site.name}<br />
+          Advogada especialista em {site.area} · {site.oab}
+        </p>
+        <p>
+          <a href={waLink(site.messages.neutral)}>WhatsApp: {site.phoneDisplay}</a><br />
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          Horário de atendimento: {site.hours}<br />
+          Presencial: {site.address.line} · Online em todo o Brasil.
+        </p>
+      </div>
+      <div>
+        <p>
+          <a href={site.instagram} rel="me noopener noreferrer" target="_blank">Instagram</a><br />
+          <a href={site.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn</a>
+        </p>
+      </div>
+    </div>
+    <div class="legal-bar">
+      <a href="/politica-de-privacidade">Política de Privacidade</a>
+      {legal && <a href="/">Voltar ao início</a>}
+    </div>
+  </div>
+</footer>

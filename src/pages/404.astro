@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`Página não encontrada | ${site.name}`}
+  description="A página solicitada não está disponível."
+  legal
+  robots="noindex,follow"
+>
+  <article class="legal">
+    <div class="wrap">
+      <h1>Página não encontrada</h1>
+      <p>O endereço não corresponde a uma página deste site.</p>
+      <a class="back" href="/">Voltar ao início</a>
+    </div>
+  </article>
+</Base>

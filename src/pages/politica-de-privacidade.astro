@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { privacyJsonLd, serializeLd } from '../data/schema';
+import { privacySections, site } from '../data/site';
+
+const title = `Política de Privacidade | ${site.name}`;
+const description =
+  'Como a Dra. Marjorie Cordeiro trata os dados pessoais recebidos pelo site e pelos canais de contato.';
+---
+
+<Base title={title} description={description} jsonLd={serializeLd(privacyJsonLd())} legal>
+  <article class="legal">
+    <div class="wrap">
+      <h1>Política de Privacidade</h1>
+      <p>Sua privacidade é tratada com seriedade. Aqui explicamos, de forma simples, quais dados podem ser recebidos, como são utilizados e quais são os seus direitos.</p>
+      {
+        privacySections.map((section) => (
+          <section>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) =>
+              paragraph.includes(site.email) ? (
+                <p>
+                  {paragraph.replace(site.email, '')}
+                  <a href={`mailto:${site.email}`}>{site.email}</a>
+                </p>
+              ) : (
+                <p>{paragraph}</p>
+              ),
+            )}
+            {'items' in section && section.items && (
+              <ul>
+                {section.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+            {'after' in section &&
+              section.after?.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))
+      }
+      <p>Última atualização: {site.privacyUpdated}.</p>
+      <a class="back" href="/">Voltar ao início</a>
+    </div>
+  </article>
+</Base>

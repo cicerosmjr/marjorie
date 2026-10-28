@@ -1,0 +1,83 @@
+---
+import { formProfiles, formSubjects, site, waLink } from '../data/site';
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+---
+
+  <div class="footer-card" id="contato">
+  <h2>Formulário de contato</h2>
+  <form
+    id="contato-form"
+    method="post"
+    action={endpoint || undefined}
+    data-phone={site.whatsappNumber}
+    data-endpoint={endpoint}
+  >
+    <div class="form fields">
+      <label class="field">
+        Nome completo
+        <input name="nome" type="text" autocomplete="name" required />
+      </label>
+      <label class="field">
+        WhatsApp / telefone
+        <input name="telefone" type="tel" autocomplete="tel" inputmode="tel" required />
+      </label>
+      <label class="field">
+        E-mail
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+      <label class="field">
+        Você está buscando orientação como
+        <select name="perfil" required>
+          <option value="">Selecione</option>
+          {formProfiles.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+      <label class="field field-wide">
+        Assunto principal
+        <select name="assunto" required>
+          <option value="">Selecione</option>
+          {formSubjects.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+      <label class="field field-wide">
+        Conte brevemente o que está acontecendo
+        <textarea name="relato" required></textarea>
+      </label>
+    </div>
+    <p class="field-hint">
+      Faça um breve resumo da situação. Não é necessário enviar documentos ou informações médicas detalhadas neste primeiro contato.
+    </p>
+    <button class="btn btn-primary" type="submit">Enviar solicitação</button>
+    <p class="form-note">
+      Ao enviar este formulário, seus dados serão utilizados para responder ao seu contato e dar andamento à sua solicitação, conforme a <a href="/politica-de-privacidade">Política de Privacidade</a>.
+    </p>
+    <noscript>
+      <p class="field-hint">
+        Se o formulário não enviar, fale pelo <a href={waLink(site.messages.neutral)}>WhatsApp</a>.
+      </p>
+    </noscript>
+  </form>
+</div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contato-form');
+  form?.addEventListener('submit', (event) => {
+    if (form.dataset.endpoint) return;
+    event.preventDefault();
+    const data = new FormData(form);
+    const text = [
+      'Olá, Dra. Marjorie. Gostaria de orientação.',
+      '',
+      `Nome: ${data.get('nome') ?? ''}`,
+      `WhatsApp: ${data.get('telefone') ?? ''}`,
+      `E-mail: ${data.get('email') ?? ''}`,
+      `Perfil: ${data.get('perfil') ?? ''}`,
+      `Assunto: ${data.get('assunto') ?? ''}`,
+      '',
+      `${data.get('relato') ?? ''}`,
+    ].join('\n');
+    const phone = form.dataset.phone ?? '';
+    window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  });
+</script>
