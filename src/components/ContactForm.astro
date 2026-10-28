@@ -1,11 +1,11 @@
 ---
+import Button from './Button.astro';
 import { formProfiles, formSubjects, site, waLink } from '../data/site';
 
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 ---
 
-  <div class="footer-card" id="contato">
-  <h2>Formulário de contato</h2>
+  <div class="form-card">
   <form
     id="contato-form"
     method="post"
@@ -48,7 +48,7 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
     <p class="field-hint">
       Faça um breve resumo da situação. Não é necessário enviar documentos ou informações médicas detalhadas neste primeiro contato.
     </p>
-    <button class="btn btn-primary" type="submit">Enviar solicitação</button>
+    <Button variant="light" type="submit">Enviar solicitação</Button>
     <p class="form-note">
       Ao enviar este formulário, seus dados serão utilizados para responder ao seu contato e dar andamento à sua solicitação, conforme a <a href="/politica-de-privacidade">Política de Privacidade</a>.
     </p>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  text: string;
+  word: string;
+}
+
+const { text, word } = Astro.props;
+const at = text.indexOf(word);
+---
+
+{at < 0 ? text : <>{text.slice(0, at)}<em>{word}</em>{text.slice(at + word.length)}</>}

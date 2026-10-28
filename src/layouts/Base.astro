@@ -1,6 +1,8 @@
 ---
 import '@fontsource/lora/latin-500.css';
+import '@fontsource/lora/latin-500-italic.css';
 import '@fontsource/lora/latin-ext-500.css';
+import '@fontsource/lora/latin-ext-500-italic.css';
 import '@fontsource/lora/latin-600.css';
 import '@fontsource/lora/latin-ext-600.css';
 import '@fontsource/manrope/latin-400.css';
@@ -10,6 +12,7 @@ import '@fontsource/manrope/latin-ext-500.css';
 import '@fontsource/manrope/latin-600.css';
 import '@fontsource/manrope/latin-ext-600.css';
 import '../styles/global.css';
+import '../styles/sections.css';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
@@ -31,6 +34,9 @@ const canonical = new URL(pathname, site.url).href;
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -43,10 +49,13 @@ const canonical = new URL(pathname, site.url).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site.url}/fotos/autoridade.jpg`} />
+    <meta property="og:image" content={`${site.url}/og.jpg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/og.jpg`} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#173C43" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumo para modelos de linguagem" />
@@ -60,5 +69,34 @@ const canonical = new URL(pathname, site.url).href;
     </main>
     <Footer legal={legal} />
     <WhatsAppFloat />
+    <script>
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealed = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if (reduceMotion) {
+        revealed.forEach((node) => node.classList.add('is-in'));
+      } else if (revealed.length) {
+        const revealObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-in');
+              revealObs.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
+        );
+        revealed.forEach((node) => revealObs.observe(node));
+      }
+
+      const fab = document.querySelector('.wa-float');
+      const hero = document.querySelector('.hero');
+      if (fab && hero) {
+        const fabObs = new IntersectionObserver(
+          ([entry]) => fab.classList.toggle('is-hidden', entry.isIntersecting),
+          { threshold: 0.2 },
+        );
+        fabObs.observe(hero);
+      }
+    </script>
   </body>
 </html>

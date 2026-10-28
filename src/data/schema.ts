@@ -1,4 +1,7 @@
-import { faqs, knowsAbout, photos, site } from './site';
+import autoridade from '../assets/autoridade.jpg';
+import { faqs, knowsAbout, site } from './site';
+
+const portraitUrl = new URL(autoridade.src, site.url).href;
 
 const personId = `${site.url}/#person`;
 const practiceId = `${site.url}/#practice`;
@@ -21,7 +24,7 @@ const person = {
   description:
     'Advogada especialista em Direito Médico e da Saúde e jornalista de formação. Atua na orientação jurídica de pacientes, familiares, médicos e clínicas, com atendimento presencial em Fortaleza e online em todo o Brasil.',
   url: `${site.url}/`,
-  image: `${site.url}${photos.autoridade}`,
+  image: portraitUrl,
   email: site.email,
   telephone: site.phoneE164,
   address,
@@ -44,12 +47,12 @@ const person = {
 };
 
 const practice = {
-  '@type': ['LegalService', 'Attorney'],
+  '@type': 'LegalService',
   '@id': practiceId,
   name: `${site.name} — ${site.area}`,
   description: site.description,
   url: `${site.url}/`,
-  image: `${site.url}${photos.autoridade}`,
+  image: portraitUrl,
   telephone: site.phoneE164,
   email: site.email,
   address,

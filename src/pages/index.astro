@@ -1,5 +1,13 @@
 ---
+import autoridade from '../assets/autoridade.jpg';
+import medicos from '../assets/medicos.jpg';
+import proximidade from '../assets/proximidade.jpg';
+import retrato from '../assets/retrato.jpg';
+import Button from '../components/Button.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Icon from '../components/Icon.astro';
+import Mark from '../components/Mark.astro';
+import Portrait from '../components/Portrait.astro';
 import Base from '../layouts/Base.astro';
 import { homeJsonLd, serializeLd } from '../data/schema';
 import {
@@ -12,7 +20,6 @@ import {
   patientFronts,
   patientTags,
   patientTeasers,
-  photos,
   site,
   waLink,
 } from '../data/site';
@@ -20,106 +27,108 @@ import {
 const patientFaqs = faqs.filter((item) => item.audience === 'pacientes');
 const priorityFaqs = patientFaqs.filter((item) => item.priority);
 const otherPatientFaqs = patientFaqs.filter((item) => !item.priority);
+const patientFaqItems = [...priorityFaqs, ...otherPatientFaqs];
 const doctorFaqs = faqs.filter((item) => item.audience === 'medicos');
 const jsonLd = serializeLd(homeJsonLd());
+const heroSizes = '(min-width: 900px) 34vw, 92vw';
+const phraseMark = 'decisões';
+const phraseAt = site.phrase.indexOf(phraseMark);
+const phraseBefore = phraseAt >= 0 ? site.phrase.slice(0, phraseAt) : site.phrase;
+const phraseAfter = phraseAt >= 0 ? site.phrase.slice(phraseAt + phraseMark.length) : '';
+const photoSizes = '(min-width: 900px) 36vw, 92vw';
 ---
 
 <Base title={site.title} description={site.description} jsonLd={jsonLd}>
   <section class="hero" id="inicio">
-    <div class="hero-copy">
-      <h1>Dra. Marjorie Cordeiro, advogada de Direito Médico e da Saúde</h1>
-      <p class="display">{site.phrase}</p>
-      <p class="lead">Orientação jurídica para pacientes e profissionais médicos, com uma atuação clara, próxima e responsável.</p>
-      <p class="muted">{site.attendance}</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#pacientes">Preciso de orientação como paciente</a>
-        <a class="btn btn-secondary" href="#medicos">Busco orientação como médico</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Dra. Marjorie Cordeiro, advogada de Direito Médico e da Saúde</h1>
+        <p class="display">
+          {phraseBefore}{phraseAt >= 0 && <em>{phraseMark}</em>}{phraseAfter}
+        </p>
+        <p class="lead">Orientação jurídica para pacientes e profissionais médicos, com uma atuação clara, próxima e responsável.</p>
+        <p class="muted">{site.attendance}</p>
+        <div class="actions">
+          <Button variant="link" href="#pacientes">Preciso de orientação como paciente</Button>
+          <Button variant="link" href="#medicos">Busco orientação como médico</Button>
+        </div>
       </div>
-    </div>
-    <div class="hero-stage">
-      <svg class="leaf leaf-back" viewBox="0 0 120 160" aria-hidden="true">
-        <path fill="currentColor" d="M62 8c18 22 34 36 46 62-26 6-42 24-48 52-4-30-18-54-46-72 20-18 32-30 48-42z" />
-        <path d="M60 28v96" fill="none" stroke="currentColor" stroke-width="2" />
-      </svg>
-      <figure class="hero-photo shot-hero">
-        <img src={photos.autoridade} alt="Dra. Marjorie Cordeiro, advogada de Direito Médico e da Saúde" width="900" height="1200" />
-      </figure>
-      <svg class="leaf leaf-front" viewBox="0 0 120 160" aria-hidden="true">
-        <path fill="currentColor" d="M58 150C40 128 24 114 12 88c26-6 42-24 48-52 4 30 18 54 46 72-20 18-32 30-48 42z" />
-        <path d="M60 132V36" fill="none" stroke="currentColor" stroke-width="2" />
-      </svg>
+      <div class="hero-media">
+        <Portrait
+          src={autoridade}
+          alt="Dra. Marjorie Cordeiro, advogada de Direito Médico e da Saúde"
+          priority
+          sizes={heroSizes}
+        />
+        <p class="hero-card">OAB/CE 29.417 · Especialista em Direito Médico e da Saúde</p>
+      </div>
     </div>
   </section>
 
   <section class="section section-white">
-    <div class="wrap split">
-      <div>
-        <h2>Direito e saúde exigem conhecimento. Mas também clareza.</h2>
+    <div class="wrap intro-grid">
+      <h2 data-reveal><Mark text="Direito e saúde exigem conhecimento. Mas também clareza." word="clareza" /></h2>
+      <div data-reveal>
         <p>
           Questões de saúde costumam chegar com dúvidas, preocupação e decisões que não podem esperar. Dra. Marjorie Cordeiro atua no encontro entre Direito e Saúde, transformando questões jurídicas complexas em orientação clara e responsável.
         </p>
+        <blockquote class="pull">
+          <p>{site.signature}</p>
+        </blockquote>
       </div>
-      <blockquote class="quote-card">
-        <svg class="leaf leaf-card" viewBox="0 0 120 160" aria-hidden="true">
-          <path fill="currentColor" d="M62 8c18 22 34 36 46 62-26 6-42 24-48 52-4-30-18-54-46-72 20-18 32-30 48-42z" />
-        </svg>
-        <p>{site.signature}</p>
-      </blockquote>
     </div>
   </section>
 
-  <section class="section" aria-label="Caminhos de atuação">
+  <section class="section section-sand paths" aria-label="Caminhos de atuação">
     <div class="wrap duo">
-      <article class="duo-card" id="atalho-pacientes">
+      <article class="duo-card" id="atalho-pacientes" data-reveal>
         <p class="kicker">Para pacientes e familiares</p>
-        <h2>Quando um problema de saúde também se torna uma questão jurídica, entender o que pode ser feito é o primeiro passo.</h2>
+        <h2><Mark text="Quando a saúde se torna uma questão jurídica, entender o que pode ser feito é o primeiro passo." word="jurídica" /></h2>
         <ul>
           {patientTeasers.map((item) => <li><strong>{item.title}.</strong> {item.text}</li>)}
         </ul>
         <p>Outras questões envolvendo planos de saúde, SUS, reembolso, reajustes e cancelamentos também podem ser analisadas.</p>
-        <a class="btn btn-primary" href="#pacientes">Conheça a atuação para pacientes</a>
+        <Button href="#pacientes">Conheça a atuação para pacientes</Button>
       </article>
-      <article class="duo-card duo-sage" id="atalho-medicos">
+      <article class="duo-card" id="atalho-medicos" data-reveal>
         <p class="kicker">Para médicos e clínicas</p>
-        <h2>Segurança jurídica também faz parte da prática médica.</h2>
+        <h2><Mark text="Segurança jurídica também faz parte da prática médica." word="jurídica" /></h2>
         <p>Orientação jurídica preventiva para que médicos e clínicas exerçam sua atividade com mais informação e segurança, em temas como:</p>
         <ul>
           {doctorTags.map((tag) => <li>{tag}</li>)}
         </ul>
-        <a class="btn btn-primary" href="#medicos">Conheça a atuação para médicos</a>
+        <Button href="#medicos">Conheça a atuação para médicos</Button>
       </article>
     </div>
   </section>
 
   <section class="section section-white" id="pacientes" aria-labelledby="titulo-pacientes">
     <div class="wrap">
-      <div class="split media-first">
+      <div class="split">
         <div>
+          <p class="eyebrow">01 — Pacientes</p>
           <p class="kicker">Para pacientes</p>
-          <h2 id="titulo-pacientes">Direito Médico para pacientes e familiares.</h2>
+          <h2 id="titulo-pacientes" data-reveal><Mark text="Direito Médico para pacientes e familiares." word="pacientes" /></h2>
           <p class="lead">Negativas do plano de saúde, home care e medicamentos: seus direitos explicados com clareza.</p>
           <p>
             Dra. Marjorie Cordeiro atua na orientação jurídica de pacientes e familiares que enfrentam dificuldades relacionadas ao acesso a tratamentos, exames, cirurgias, medicamentos e outros direitos ligados à saúde.
           </p>
           <p>A proposta é compreender a situação, analisar os documentos disponíveis e explicar com clareza as possibilidades de cada caso.</p>
           <div class="actions">
-            <a class="btn btn-primary" href={waLink(site.messages.patient)}>Falar pelo WhatsApp</a>
+            <Button variant="whatsapp" href={waLink(site.messages.patient)}>Falar pelo WhatsApp</Button>
           </div>
         </div>
-        <figure class="frame shot-soft">
-          <img src={photos.proximidade} alt="Dra. Marjorie Cordeiro em conversa, em ambiente contemporâneo" width="900" height="1200" />
-          <svg class="leaf leaf-frame" viewBox="0 0 120 160" aria-hidden="true">
-            <path fill="currentColor" d="M62 8c18 22 34 36 46 62-26 6-42 24-48 52-4-30-18-54-46-72 20-18 32-30 48-42z" />
-          </svg>
-        </figure>
+        <div class="media" data-reveal>
+          <Portrait src={proximidade} alt="Dra. Marjorie Cordeiro em conversa, em ambiente contemporâneo" sizes={photoSizes} />
+        </div>
       </div>
 
       <div class="section-block">
-        <h2>Como a orientação jurídica pode ajudar.</h2>
+        <h2 data-reveal><Mark text="Como a orientação jurídica pode ajudar." word="ajudar" /></h2>
         <div class="cards">
           {
             patientFronts.map((item) => (
-              <article class="card">
+              <article class="card" data-reveal>
                 <Icon name={item.icon} />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -130,13 +139,13 @@ const jsonLd = serializeLd(homeJsonLd());
       </div>
 
       <div class="section-block">
-        <h2>Outras demandas também podem ser analisadas.</h2>
+        <h2 data-reveal><Mark text="Outras demandas também podem ser analisadas." word="demandas" /></h2>
         <p>Entre elas:</p>
         <ul class="tags">
           {patientTags.map((tag) => <li>{tag}</li>)}
         </ul>
         <div class="actions">
-          <a class="btn btn-primary" href={waLink(site.messages.patient)}>Falar pelo WhatsApp</a>
+          <Button variant="whatsapp" href={waLink(site.messages.patient)}>Falar pelo WhatsApp</Button>
         </div>
       </div>
     </div>
@@ -144,10 +153,11 @@ const jsonLd = serializeLd(homeJsonLd());
 
   <section class="section section-sage" id="medicos" aria-labelledby="titulo-medicos">
     <div class="wrap">
-      <div class="split media-first">
+      <div class="split split-reverse">
         <div>
+          <p class="eyebrow">02 — Médicos</p>
           <p class="kicker">Para médicos</p>
-          <h2 id="titulo-medicos">Orientação jurídica para médicos e clínicas.</h2>
+          <h2 id="titulo-medicos" data-reveal><Mark text="Orientação jurídica para médicos e clínicas." word="médicos" /></h2>
           <p class="lead">Conhecimento jurídico também faz parte de uma prática médica organizada.</p>
           <p>
             A atividade médica envolve não apenas decisões clínicas, mas também documentos, comunicação com pacientes, direitos profissionais e responsabilidades que podem exigir orientação jurídica.
@@ -156,23 +166,20 @@ const jsonLd = serializeLd(homeJsonLd());
             A Dra. Marjorie Cordeiro atua de forma preventiva e orientativa, ajudando médicos e clínicas a compreender questões jurídicas relacionadas à prática profissional e a tomar decisões com mais informação e segurança.
           </p>
           <div class="actions">
-            <a class="btn btn-primary" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</a>
+            <Button variant="whatsapp" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</Button>
           </div>
         </div>
-        <figure class="medicos-photo">
-          <img src={photos.medicos} alt="Dra. Marjorie Cordeiro à mesa, com documentos e um estetoscópio" width="900" height="1200" />
-          <svg class="leaf leaf-medicos" viewBox="0 0 120 160" aria-hidden="true">
-            <path fill="currentColor" d="M62 8c18 22 34 36 46 62-26 6-42 24-48 52-4-30-18-54-46-72 20-18 32-30 48-42z" />
-          </svg>
-        </figure>
+        <div class="media media-ink media-flip" data-reveal>
+          <Portrait src={medicos} alt="Dra. Marjorie Cordeiro à mesa, com documentos e um estetoscópio" sizes={photoSizes} />
+        </div>
       </div>
 
       <div class="section-block">
-        <h2>Como a orientação jurídica pode contribuir para a prática médica.</h2>
+        <h2 data-reveal><Mark text="Como a orientação jurídica pode contribuir para a prática médica." word="prática" /></h2>
         <div class="cards">
           {
             doctorFronts.map((item) => (
-              <article class="card">
+              <article class="card" data-reveal>
                 <Icon name={item.icon} />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -182,50 +189,57 @@ const jsonLd = serializeLd(homeJsonLd());
         </div>
       </div>
 
-      <div class="section-block narrow">
-        <h2>Orientação antes e depois de uma dúvida surgir.</h2>
-        <p>
-          A orientação jurídica não precisa começar apenas quando existe um conflito. Ela pode revisar documentos e identificar pontos de atenção na rotina e, quando já existe uma situação concreta (como uma dúvida sobre documentação ou uma solicitação formal), começa pela análise dos fatos antes de qualquer medida.
-        </p>
-        <blockquote class="pull">
+      <div class="section-block quote-split">
+        <div>
+          <h2 data-reveal><Mark text="Orientação antes e depois de uma dúvida surgir." word="dúvida" /></h2>
+          <p>
+            A orientação jurídica não precisa começar apenas quando existe um conflito. Ela pode revisar documentos e identificar pontos de atenção na rotina e, quando já existe uma situação concreta (como uma dúvida sobre documentação ou uma solicitação formal), começa pela análise dos fatos antes de qualquer medida.
+          </p>
+          <div class="actions">
+            <Button variant="whatsapp" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</Button>
+          </div>
+        </div>
+        <blockquote class="quote-ink" data-reveal>
           <p>Prevenção jurídica não significa trabalhar com medo. Significa tomar decisões com mais informação.</p>
         </blockquote>
-        <div class="actions">
-          <a class="btn btn-primary" href={waLink(site.messages.doctor)}>Falar pelo WhatsApp</a>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="section section-white" id="sobre" aria-labelledby="titulo-sobre">
-    <div class="wrap split about-split">
-      <figure class="shot-round about-photo">
-        <img src={photos.retrato} alt="Retrato da Dra. Marjorie Cordeiro" width="900" height="900" />
-      </figure>
-      <div>
-        <h2 id="titulo-sobre">Direito, comunicação e uma forma mais clara de orientar.</h2>
-        <p>
-          Dra. Marjorie Cordeiro é advogada especialista em Direito Médico e da Saúde e jornalista de formação. Formada em direito pela Universidade de Fortaleza, em 2014, com pós-graduação em processo penal e penal, mestranda na Universidade Católica Portuguesa — UCP Porto e especialização em direito médico e da saúde.
-        </p>
-        <p>
-          Da comunicação vem uma habilidade essencial em uma área marcada por normas, decisões e documentos técnicos: compreender, organizar, contextualizar e traduzir informações complexas.
-        </p>
-        <p>Sua atuação parte da honestidade: dizer com transparência o que pode ser feito, o que precisa ser analisado e quais caminhos podem ser considerados.</p>
+    <div class="wrap">
+      <div class="split">
+        <div class="media" data-reveal>
+          <Portrait src={retrato} alt="Retrato da Dra. Marjorie Cordeiro" sizes={photoSizes} />
+          <p class="hero-card">OAB/CE 29.417</p>
+        </div>
+        <div>
+          <p class="eyebrow">03 — Sobre</p>
+          <h2 id="titulo-sobre" data-reveal><Mark text="Direito, comunicação e uma forma mais clara de orientar." word="orientar" /></h2>
+          <p>
+            Dra. Marjorie Cordeiro é advogada especialista em Direito Médico e da Saúde e jornalista de formação. Formada em direito pela Universidade de Fortaleza, em 2014, com pós-graduação em processo penal e penal, mestranda na Universidade Católica Portuguesa — UCP Porto e especialização em direito médico e da saúde.
+          </p>
+          <p>
+            Da comunicação vem uma habilidade essencial em uma área marcada por normas, decisões e documentos técnicos: compreender, organizar, contextualizar e traduzir informações complexas.
+          </p>
+          <p>Sua atuação parte da honestidade: dizer com transparência o que pode ser feito, o que precisa ser analisado e quais caminhos podem ser considerados.</p>
+          <ul class="credentials">
+            {credentials.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
       </div>
-      <ul class="credentials">
-        {credentials.map((item) => <li>{item}</li>)}
-      </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="titulo-metodo">
+  <section class="section section-ink" aria-labelledby="titulo-metodo">
     <div class="wrap">
-      <h2 id="titulo-metodo">Entender antes de decidir.</h2>
+      <p class="eyebrow">04 — Método</p>
+      <h2 id="titulo-metodo" data-reveal><Mark text="Entender antes de decidir." word="decidir" /></h2>
       <p class="intro">Cada situação tem contexto próprio. Por isso, a atuação segue uma sequência clara:</p>
       <ol class="steps">
         {
           methodSteps.map((step, index) => (
-            <li class="step">
+            <li class="step" data-reveal>
               <span class="step-label">{String(index + 1).padStart(2, '0')}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
@@ -236,69 +250,77 @@ const jsonLd = serializeLd(homeJsonLd());
     </div>
   </section>
 
-  <section class="section section-white" aria-labelledby="titulo-contato">
-    <div class="wrap split">
-      <div>
-      <h2 id="titulo-contato">Como funciona o primeiro contato</h2>
-      <div class="contact-steps contact-stack">
+  <section class="section section-white" aria-labelledby="titulo-primeiro">
+    <div class="wrap">
+      <p class="eyebrow">05 — Contato</p>
+      <h2 id="titulo-primeiro" data-reveal><Mark text="Como funciona o primeiro contato" word="contato" /></h2>
+      <div class="contact-steps">
         {
           contactSteps.map((step, index) => (
-            <article class="contact-step">
-              <span>{index + 1}</span>
+            <article class="contact-step" data-reveal>
+              <span class="step-num">{String(index + 1).padStart(2, '0')}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
             </article>
           ))
         }
       </div>
-      <div class="actions">
-        <a class="btn btn-primary" href={waLink(site.messages.neutral)}>Falar pelo WhatsApp</a>
+      <div class="actions actions-center">
+        <Button variant="whatsapp" href={waLink(site.messages.neutral)}>Falar pelo WhatsApp</Button>
       </div>
-      </div>
-      <figure class="frame shot-blob">
-        <img src={photos.proximidade} alt="Dra. Marjorie Cordeiro em um momento de orientação" width="900" height="1200" />
-      </figure>
     </div>
   </section>
 
-  <section class="section" id="faq" aria-labelledby="titulo-faq">
-    <div class="wrap narrow">
-      <h2 id="titulo-faq">Dúvidas frequentes</h2>
-      <div class="faq-group">
-        <h3>Pacientes e familiares</h3>
+  <section class="section section-sand" id="faq" aria-labelledby="titulo-faq">
+    <div class="wrap faq-layout">
+      <div class="faq-aside">
+        <p class="eyebrow">06 — Dúvidas</p>
+        <h2 id="titulo-faq" data-reveal><Mark text="Dúvidas frequentes" word="frequentes" /></h2>
         <p>As primeiras perguntas tratam de negativas, tratamentos, home care, medicamentos e terapias para TEA.</p>
-        <div class="faq-list">
-          {
-            priorityFaqs.map((item) => (
-              <details class="faq-item">
-                <summary><span>{item.question}</span></summary>
-                <p>{item.answer}</p>
-              </details>
-            ))
-          }
-        </div>
-        <div class="faq-list">
-          {
-            otherPatientFaqs.map((item) => (
-              <details class="faq-item">
-                <summary><span>{item.question}</span></summary>
-                <p>{item.answer}</p>
-              </details>
-            ))
-          }
+        <div class="faq-contact">
+          <Button variant="whatsapp" href={waLink(site.messages.neutral)}>Falar pelo WhatsApp</Button>
         </div>
       </div>
-      <div class="faq-group">
-        <h3>Médicos e clínicas</h3>
-        <div class="faq-list">
-          {
-            doctorFaqs.map((item) => (
-              <details class="faq-item">
-                <summary><span>{item.question}</span></summary>
-                <p>{item.answer}</p>
-              </details>
-            ))
-          }
+      <div>
+        <div class="faq-group">
+          <h3><Mark text="Pacientes e familiares" word="familiares" /></h3>
+          <div class="faq-list">
+            {
+              patientFaqItems.map((item) => (
+                <details class="faq-item">
+                  <summary>
+                    <span class="faq-q">{item.question}</span>
+                    <span class="faq-mark" aria-hidden="true"></span>
+                  </summary>
+                  <div class="faq-a">
+                    <div>
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+        <div class="faq-group">
+          <h3><Mark text="Médicos e clínicas" word="clínicas" /></h3>
+          <div class="faq-list">
+            {
+              doctorFaqs.map((item) => (
+                <details class="faq-item">
+                  <summary>
+                    <span class="faq-q">{item.question}</span>
+                    <span class="faq-mark" aria-hidden="true"></span>
+                  </summary>
+                  <div class="faq-a">
+                    <div>
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
+                </details>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
@@ -306,12 +328,30 @@ const jsonLd = serializeLd(homeJsonLd());
 
   <section class="section cta" aria-labelledby="titulo-cta">
     <div class="wrap">
-      <h2 id="titulo-cta">Uma decisão mais segura começa por compreender a situação.</h2>
+      <h2 id="titulo-cta" data-reveal><Mark text="Uma decisão mais segura começa por compreender a situação." word="decisão" /></h2>
       <p>Se você é paciente, familiar ou médico, o primeiro passo é entender o contexto e identificar os caminhos que podem ser avaliados.</p>
       <div class="actions">
-        <a class="btn btn-light" href="#pacientes">Preciso de orientação como paciente</a>
-        <a class="btn btn-ghost" href="#medicos">Busco orientação como médico</a>
+        <Button variant="light" href="#pacientes">Preciso de orientação como paciente</Button>
+        <Button variant="ghost" href="#medicos">Busco orientação como médico</Button>
       </div>
+    </div>
+  </section>
+
+  <section class="section section-ink" id="contato" aria-labelledby="titulo-contato">
+    <div class="wrap contact-layout">
+      <div>
+        <h2 id="titulo-contato" data-reveal><Mark text="Fale com a Dra. Marjorie Cordeiro" word="Fale" /></h2>
+        <p>{site.attendance}</p>
+        <p>
+          <a href={waLink(site.messages.neutral)}>WhatsApp: {site.phoneDisplay}</a><br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p>
+          Horário de atendimento: {site.hours}<br />
+          Presencial: {site.address.line}
+        </p>
+      </div>
+      <ContactForm />
     </div>
   </section>
 </Base>

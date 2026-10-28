@@ -1,4 +1,5 @@
 ---
+import Button from './Button.astro';
 import { site, waLink } from '../data/site';
 
 interface Props {
@@ -24,8 +25,10 @@ const whatsapp = waLink(site.messages.neutral);
             <a href="/#inicio">Home</a>
             <a href="/#pacientes">Pacientes</a>
             <a href="/#medicos">Médicos</a>
+            <a href="/#sobre">Sobre</a>
             <a href="/#faq">FAQ</a>
-            <a class="nav-wa" href={whatsapp}>Fale pelo WhatsApp</a>
+            <a href="/#contato">Contato</a>
+            <Button variant="whatsapp" href={whatsapp} compact>Fale pelo WhatsApp</Button>
           </nav>
         </>
       )
@@ -34,10 +37,39 @@ const whatsapp = waLink(site.messages.neutral);
 </header>
 
 <script>
-  document.querySelectorAll('.nav a').forEach((link) => {
+  const header = document.querySelector('.header');
+  const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 4);
+  syncHeader();
+  window.addEventListener('scroll', syncHeader, { passive: true });
+
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav a');
+  navLinks.forEach((link) => {
     link.addEventListener('click', () => {
       const toggle = document.querySelector<HTMLInputElement>('#menu-toggle');
       if (toggle) toggle.checked = false;
     });
   });
+
+  const byId = new Map<string, HTMLAnchorElement>();
+  navLinks.forEach((link) => {
+    const id = link.hash.replace('#', '');
+    if (id) byId.set(id, link);
+  });
+  const sections = [...byId.keys()]
+    .map((id) => document.getElementById(id))
+    .filter((section): section is HTMLElement => Boolean(section));
+  if (sections.length) {
+    const navObs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach((link) => link.classList.remove('is-active'));
+        byId.get(visible.target.id)?.classList.add('is-active');
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.2, 0.5] },
+    );
+    sections.forEach((section) => navObs.observe(section));
+  }
 </script>

@@ -36,14 +36,6 @@ export const site = {
   },
 } as const;
 
-export const photos = {
-  autoridade: '/fotos/autoridade.jpg',
-  proximidade: '/fotos/proximidade.jpg',
-  conhecimento: '/fotos/conhecimento.jpg',
-  medicos: '/fotos/medicos.jpg',
-  retrato: '/fotos/retrato.jpg',
-} as const;
-
 export function waLink(message: string) {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
