@@ -12,8 +12,8 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   <text x="64" y="296" fill="#173C43" font-family="Georgia, 'Times New Roman', serif" font-size="54">Cordeiro</text>
   <rect x="64" y="332" width="72" height="3" fill="#879C91"/>
   <text x="64" y="390" fill="#173C43" font-family="Georgia, 'Times New Roman', serif" font-size="26">Direito Médico e da Saúde</text>
-  <text x="64" y="470" fill="#2C3335" font-family="Georgia, 'Times New Roman', serif" font-size="22">Clareza jurídica para decisões</text>
-  <text x="64" y="504" fill="#2C3335" font-family="Georgia, 'Times New Roman', serif" font-size="22">importantes em saúde.</text>
+  <text x="64" y="470" fill="#282B2D" font-family="Georgia, 'Times New Roman', serif" font-size="22">Clareza jurídica para decisões</text>
+  <text x="64" y="504" fill="#282B2D" font-family="Georgia, 'Times New Roman', serif" font-size="22">importantes em saúde.</text>
 </svg>`;
 
 await sharp({

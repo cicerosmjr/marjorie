@@ -1,8 +1,8 @@
 :root {
   --petroleum: #173c43;
   --petroleum-deep: #102a30;
-  --brass: #b8996a;
-  --brass-ink: #7a5c38;
+  --brass: #c8a397;
+  --brass-ink: #7a564e;
   --petroleum-lift: #245862;
   --offwhite: #f5f1ea;
   --sage: #879c91;
@@ -11,8 +11,8 @@
   --sage-soft: #e7eeea;
   --sage-wash: #eef3f0;
   --graphite: #282b2d;
-  --ink: #2c3335;
-  --white: #ffffff;
+  --ink: #282b2d;
+  --white: #f5f1ea;
   --line: rgba(23, 60, 67, 0.14);
   --serif: "Lora", Georgia, "Times New Roman", serif;
   --sans: "Manrope", "Segoe UI", sans-serif;
@@ -376,7 +376,7 @@ section[id] {
   overflow: hidden;
   color: var(--offwhite);
   background:
-    radial-gradient(ellipse 68% 52% at 78% 0%, rgba(184, 153, 106, 0.16), transparent 58%),
+    radial-gradient(ellipse 68% 52% at 78% 0%, rgba(200, 163, 151, 0.2), transparent 58%),
     radial-gradient(ellipse 46% 70% at 0% 100%, rgba(16, 42, 48, 0.85), transparent 62%),
     var(--petroleum);
 }
@@ -1033,8 +1033,8 @@ section[id] {
   width: 2.85rem;
   height: 2.85rem;
   border-radius: 50%;
-  background: #25d366;
-  color: #fff;
+  background: var(--petroleum);
+  color: var(--offwhite);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1044,8 +1044,8 @@ section[id] {
 }
 
 .wa-float:hover {
-  background: #1ebe5b;
-  color: #fff;
+  background: var(--petroleum-deep);
+  color: var(--offwhite);
 }
 
 :focus-visible {
