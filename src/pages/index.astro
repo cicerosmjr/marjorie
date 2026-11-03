@@ -1,8 +1,8 @@
 ---
-import autoridade from '../assets/autoridade.jpg';
-import medicos from '../assets/medicos.jpg';
-import proximidade from '../assets/proximidade.jpg';
-import retrato from '../assets/retrato.jpg';
+import foto1 from '../assets/foto1.png';
+import foto2 from '../assets/foto2.png';
+import foto3 from '../assets/foto3.png';
+import foto4 from '../assets/foto4.png';
 import Button from '../components/Button.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Icon from '../components/Icon.astro';
@@ -55,7 +55,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
       </div>
       <div class="hero-media">
         <Portrait
-          src={autoridade}
+          src={foto1}
           alt="Dra. Marjorie Cordeiro, advogada de Direito Médico e da Saúde"
           priority
           sizes={heroSizes}
@@ -119,7 +119,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
           </div>
         </div>
         <div class="media" data-reveal>
-          <Portrait src={proximidade} alt="Dra. Marjorie Cordeiro em conversa, em ambiente contemporâneo" sizes={photoSizes} />
+          <Portrait src={foto2} alt="Dra. Marjorie Cordeiro sentada em uma poltrona" sizes={photoSizes} />
         </div>
       </div>
 
@@ -170,7 +170,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
           </div>
         </div>
         <div class="media media-ink media-flip" data-reveal>
-          <Portrait src={medicos} alt="Dra. Marjorie Cordeiro à mesa, com documentos e um estetoscópio" sizes={photoSizes} />
+          <Portrait src={foto3} alt="Dra. Marjorie Cordeiro à mesa, com um notebook" sizes={photoSizes} />
         </div>
       </div>
 
@@ -212,8 +212,7 @@ const photoSizes = '(min-width: 900px) 36vw, 92vw';
     <div class="wrap">
       <div class="split">
         <div class="media" data-reveal>
-          <Portrait src={retrato} alt="Retrato da Dra. Marjorie Cordeiro" sizes={photoSizes} />
-          <p class="hero-card">OAB/CE 29.417</p>
+          <Portrait src={foto4} alt="Retrato da Dra. Marjorie Cordeiro" sizes={photoSizes} />
         </div>
         <div>
           <p class="eyebrow">03 — Sobre</p>

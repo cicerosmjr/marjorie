@@ -1,7 +1,7 @@
-import autoridade from '../assets/autoridade.jpg';
+import foto1 from '../assets/foto1.png';
 import { faqs, knowsAbout, site } from './site';
 
-const portraitUrl = new URL(autoridade.src, site.url).href;
+const portraitUrl = new URL(foto1.src, site.url).href;
 
 const personId = `${site.url}/#person`;
 const practiceId = `${site.url}/#practice`;

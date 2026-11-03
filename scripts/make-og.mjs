@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 
-const photo = await sharp('src/assets/autoridade.jpg')
+const photo = await sharp('src/assets/foto1.png')
   .resize(520, 630, { fit: 'cover', position: 'top' })
   .toBuffer();
 
